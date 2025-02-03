@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Lists - Notes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+                        .custom-cursor {
+
+position: fixed !important;
+pointer-events: none !important;
+z-index: 9999 !important;
+height: 70px !important; /* Adjust the height as needed */
+}
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f4f7fc;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 0 20px;
+        }
+
+        .card {
+            background-color: #fff;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card h3 {
+            font-size: 24px;
+            color: #007BFF;
+        }
+
+        .card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .card ul {
+            color: #555;
+            margin-left: 20px;
+        }
+
+        .icon {
+            font-size: 30px;
+            color: #007BFF;
+            margin-right: 10px;
+        }
+
+        .section-header {
+            font-size: 20px;
+            font-weight: 600;
+            color: #333;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        .section-icon {
+            color: #007BFF;
+        }
+
+        .code-block {
+            background-color: #f1f1f1;
+            border-radius: 8px;
+            padding: 15px;
+            font-family: "Courier New", monospace;
+            margin-top: 10px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #007BFF;
+            color: white;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Python Lists - Notes</h1>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <div class="section-header"><i class="fas fa-list-alt section-icon"></i> What is a List?</div>
+            <p>Lists are used to store multiple items in a single variable. They are one of the four built-in data types in Python used to store collections of data.</p>
+            <p>Lists are created using square brackets <code>[]</code>:</p>
+            <div class="code-block">
+                <code>mylist = ["apple", "banana", "cherry"]</code>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-header"><i class="fas fa-cogs section-icon"></i> List Properties</div>
+            <ul>
+                <li><strong>Ordered:</strong> Items have a defined order, and the order will not change.</li>
+                <li><strong>Changeable:</strong> You can change, add, or remove items in a list.</li>
+                <li><strong>Allow Duplicates:</strong> Lists can have duplicate values.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="section-header"><i class="fas fa-list section-icon"></i> List Length</div>
+            <p>Use the <code>len()</code> function to determine the number of items in a list.</p>
+            <div class="code-block">
+                <code>print(len(mylist))</code>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-header"><i class="fas fa-database section-icon"></i> List Data Types</div>
+            <p>List items can be of any data type:</p>
+            <div class="code-block">
+                <code>list1 = ["apple", "banana", "cherry"]</code><br>
+                <code>list2 = [1, 5, 7, 9, 3]</code><br>
+                <code>list3 = [True, False, False]</code>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-header"><i class="fas fa-hashtag section-icon"></i> The list() Constructor</div>
+            <p>You can also use the <code>list()</code> constructor to create a list:</p>
+            <div class="code-block">
+                <code>thislist = list(("apple", "banana", "cherry"))</code>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="section-header"><i class="fas fa-archive section-icon"></i> Python Collections</div>
+            <p>There are four collection data types in Python:</p>
+            <ul>
+                <li><strong>List:</strong> Ordered, changeable, allows duplicates.</li>
+                <li><strong>Tuple:</strong> Ordered, unchangeable, allows duplicates.</li>
+                <li><strong>Set:</strong> Unordered, unchangeable, no duplicates.</li>
+                <li><strong>Dictionary:</strong> Ordered, changeable, no duplicates.</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Python Notes</p>
+    </footer>
+
+    <script>
+        window.onload = function() {
+            
+       
+                   var cursor = document.createElement('img');
+             cursor.src = 'https://i.gifer.com/1V94.gif';
+             cursor.classList.add('custom-cursor');
+             
+             // Add cursor to the document
+             document.body.appendChild(cursor);
+             
+             // Adjust cursor position based on mouse movement
+             document.addEventListener('mousemove', function(e) {
+               console.log(1)
+               var cursorOffsetX = cursor.width / 2;
+               var cursorOffsetY = cursor.height / 2;
+               cursor.style.left = (e.clientX - cursorOffsetX) + 'px';
+               cursor.style.top = (e.clientY - cursorOffsetY) + 'px';
+             }); }
+       
+           </script>
+</body>
+
+</html>
