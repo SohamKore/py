@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Markdown Viewer - Dark + Code Highlighting</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    #content {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    pre {
+      background-color: #2d2d2d;
+      border-radius: 6px;
+      padding: 15px;
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+      font-size: 14px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #3c3c3c;
+      margin: 30px 0;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: #ffffff;
+    }
+
+    a {
+      color: #4ea1ff;
+    }
+
+    strong {
+      color: #ffffff;
+    }
+        .custom-cursor {
+
+position: fixed !important;
+pointer-events: none !important;
+z-index: 9999 !important;
+height: 70px !important; /* Adjust the height as needed */
+}
+  </style>
+</head>
+<body>
+
+<div id="content"></div>
+    <script>
+        window.onload = function() {
+            
+       
+                   var cursor = document.createElement('img');
+                   cursor.src = 'https://i.gifer.com/1V94.gif';
+                   cursor.classList.add('custom-cursor');
+             
+             // Add cursor to the document
+             document.body.appendChild(cursor);
+             
+             // Adjust cursor position based on mouse movement
+             document.addEventListener('mousemove', function(e) {
+               console.log(1)
+               var cursorOffsetX = cursor.width / 2;
+               var cursorOffsetY = cursor.height / 2;
+               cursor.style.left = (e.clientX - cursorOffsetX) + 'px';
+               cursor.style.top = (e.clientY - cursorOffsetY) + 'px';
+             }); }
+       
+           </script>
+<script>
+  const markdownContent = `
+  The \`datetime\` module in Python provides classes for manipulating dates and times. The key classes in this module are:
+
+* \`datetime.date\` – handles dates (year, month, day)
+* \`datetime.time\` – handles time (hour, minute, second, microsecond)
+* \`datetime.datetime\` – handles both date and time
+* \`datetime.timedelta\` – represents differences between datetime objects
+* \`datetime.tzinfo\` and \`datetime.timezone\` – handle time zones
+
+Here's a detailed list of commonly used methods from the \`datetime\` module, including their syntax, parameter descriptions, use cases, and examples:
+
+---
+
+## 🗓️ 1. \`datetime.date\` Methods
+
+### \`datetime.date(year, month, day)\`
+
+* **Parameters**:
+
+  * \`year\`: int
+  * \`month\`: int (1-12)
+  * \`day\`: int (1-31 depending on the month)
+* **Use case**: Create a date object.
+
+\`\`\`python
+from datetime import date
+d = date(2025, 5, 14)
+print(d)  # 2025-05-14
+\`\`\`
+
+---
+
+### \`.today()\`
+
+* **Returns**: Current local date.
+* **Use case**: Get today's date.
+
+\`\`\`python
+today = date.today()
+print(today)
+\`\`\`
+
+---
+
+### \`.fromisoformat(date_string)\`
+
+* **Parameters**:
+
+  * \`date_string\`: ISO 8601 date string (e.g., "2025-05-14")
+* **Use case**: Convert a string to a \`date\` object.
+
+\`\`\`python
+d = date.fromisoformat("2025-05-14")
+print(d)
+\`\`\`
+
+---
+
+### \`.isoformat()\`
+
+* **Returns**: ISO 8601 format string of the date.
+* **Use case**: Convert a \`date\` object to a string.
+
+\`\`\`python
+print(date(2025, 5, 14).isoformat())  # '2025-05-14'
+\`\`\`
+
+---
+
+## 🕒 2. \`datetime.time\` Methods
+
+### \`datetime.time(hour=0, minute=0, second=0, microsecond=0)\`
+
+* **Parameters**:
+
+  * \`hour\`: 0-23
+  * \`minute\`: 0-59
+  * \`second\`: 0-59
+  * \`microsecond\`: 0-999999
+* **Use case**: Create a time object.
+
+\`\`\`python
+from datetime import time
+t = time(14, 30)
+print(t)  # 14:30:00
+\`\`\`
+
+---
+
+### \`.isoformat()\`
+
+* **Returns**: ISO 8601 formatted time string.
+
+\`\`\`python
+t = time(14, 30, 45)
+print(t.isoformat())  # '14:30:45'
+\`\`\`
+
+---
+
+## 📅🕒 3. \`datetime.datetime\` Methods
+
+### \`datetime.datetime(year, month, day, hour=0, minute=0, second=0, microsecond=0)\`
+
+* **Use case**: Create a full datetime object.
+
+\`\`\`python
+from datetime import datetime
+dt = datetime(2025, 5, 14, 12, 30)
+print(dt)
+\`\`\`
+
+---
+
+### \`.now(tz=None)\`
+
+* **Returns**: Current local date and time (with optional timezone).
+* **Use case**: Get current datetime.
+
+\`\`\`python
+print(datetime.now())
+\`\`\`
+
+---
+
+### \`.utcnow()\`
+
+* **Returns**: Current UTC date and time.
+
+\`\`\`python
+print(datetime.utcnow())
+\`\`\`
+
+---
+
+### \`.fromtimestamp(timestamp, tz=None)\`
+
+* **Parameters**:
+
+  * \`timestamp\`: POSIX timestamp (float or int)
+* **Use case**: Convert Unix timestamp to datetime.
+
+\`\`\`python
+print(datetime.fromtimestamp(1680000000))
+\`\`\`
+
+---
+
+### \`.strftime(format)\`
+
+* **Parameters**:
+
+  * \`format\`: string using format codes (e.g., \`%Y-%m-%d\`)
+* **Use case**: Format datetime as a string.
+
+\`\`\`python
+print(datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+\`\`\`
+
+---
+
+### \`.strptime(date_string, format)\`
+
+* **Use case**: Convert string to datetime using format.
+
+\`\`\`python
+dt = datetime.strptime("2025-05-14 14:30", "%Y-%m-%d %H:%M")
+print(dt)
+\`\`\`
+
+---
+
+## ⏳ 4. \`datetime.timedelta\`
+
+### \`datetime.timedelta(days=0, seconds=0, microseconds=0, milliseconds=0, minutes=0, hours=0, weeks=0)\`
+
+* **Use case**: Represent a duration.
+
+\`\`\`python
+from datetime import timedelta
+delta = timedelta(days=5)
+print(datetime.now() + delta)  # 5 days in future
+\`\`\`
+
+---
+
+## 🌍 5. \`datetime.timezone\` and \`datetime.tzinfo\`
+
+### \`datetime.timezone(offset, name=None)\`
+
+* **Parameters**:
+
+  * \`offset\`: a \`timedelta\` object
+* **Use case**: Create timezone-aware datetime objects.
+
+\`\`\`python
+from datetime import timezone, timedelta
+tz = timezone(timedelta(hours=5, minutes=30))
+print(datetime.now(tz))
+\`\`\`
+
+---
+
+### \`.astimezone(tz)\`
+
+* **Use case**: Convert datetime to a different timezone.
+
+\`\`\`python
+utc_time = datetime.utcnow().replace(tzinfo=timezone.utc)
+ist_time = utc_time.astimezone(timezone(timedelta(hours=5, minutes=30)))
+print(ist_time)
+\`\`\`
+
+---
+
+## 📚 Summary Table of Methods
+
+| Class       | Method            | Description                 |
+| ----------- | ----------------- | --------------------------- |
+| \`date\`      | \`today()\`         | Current date                |
+| \`date\`      | \`fromisoformat()\` | Parse ISO date string       |
+| \`date\`      | \`isoformat()\`     | Format date as ISO string   |
+| \`time\`      | \`isoformat()\`     | Format time as ISO string   |
+| \`datetime\`  | \`now()\`           | Current local datetime      |
+| \`datetime\`  | \`utcnow()\`        | Current UTC datetime        |
+| \`datetime\`  | \`fromtimestamp()\` | From Unix timestamp         |
+| \`datetime\`  | \`strftime()\`      | Format datetime to string   |
+| \`datetime\`  | \`strptime()\`      | Parse string to datetime    |
+| \`timedelta\` | (constructor)     | Represent time difference   |
+| \`timezone\`  | (constructor)     | Define time zone offset     |
+| \`datetime\`  | \`astimezone()\`    | Convert to another timezone |
+
+---
+
+  `;
+
+  // Render and highlight
+  const html = marked.parse(markdownContent);
+  document.getElementById('content').innerHTML = html;
+  document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
+</script>
+
+</body>
+</html>
