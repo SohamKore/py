@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Markdown Viewer - Dark + Code Highlighting</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    #content {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    pre {
+      background-color: #2d2d2d;
+      border-radius: 6px;
+      padding: 15px;
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+      font-size: 14px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #3c3c3c;
+      margin: 30px 0;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: #ffffff;
+    }
+
+    a {
+      color: #4ea1ff;
+    }
+
+    strong {
+      color: #ffffff;
+    }
+        .custom-cursor {
+
+position: fixed !important;
+pointer-events: none !important;
+z-index: 9999 !important;
+height: 70px !important; /* Adjust the height as needed */
+}
+  </style>
+</head>
+<body>
+
+<div id="content"></div>
+    <script>
+        window.onload = function() {
+            
+       
+                   var cursor = document.createElement('img');
+                   cursor.src = 'https://i.gifer.com/1V94.gif';
+                   cursor.classList.add('custom-cursor');
+             
+             // Add cursor to the document
+             document.body.appendChild(cursor);
+             
+             // Adjust cursor position based on mouse movement
+             document.addEventListener('mousemove', function(e) {
+               console.log(1)
+               var cursorOffsetX = cursor.width / 2;
+               var cursorOffsetY = cursor.height / 2;
+               cursor.style.left = (e.clientX - cursorOffsetX) + 'px';
+               cursor.style.top = (e.clientY - cursorOffsetY) + 'px';
+             }); }
+       
+           </script>
+<script>
+  const markdownContent = `
+# 🚀 **PYTHON FUNCTIONS — FULL**
+✅ What is a function\n\n
+✅ Why functions are used\n
+✅ Types of functions\n
+✅ Function syntax\n
+✅ Parameters & arguments\n
+✅ return statement\n
+✅ Default arguments\n
+✅ Keyword arguments\n
+✅ Variable-length arguments (*args, **kwargs)\n
+✅ Scope (local & global)\n
+✅ Lambda functions\n
+✅ Recursion\n
+---
+
+
+
+## 🔹 **What is a Function?**
+
+A function is a **block of code** that performs a **specific task**.
+You write the code once and use it multiple times.
+
+### Marathi:
+
+Function म्हणजे **कोडचा reusable भाग** — एकदा लिहिलं, अनेकदा वापरता येतं.
+
+---
+
+# 🔹 **Why Use Functions?**
+
+Functions help to:
+
+* Reduce repetition
+* Make code organized
+* Increase readability
+* Divide big programs into smaller parts (modularity)
+
+---
+
+# 🔹 **Types of Functions**
+
+1. **Built-in functions** → print(), len(), type(), input()
+2. **User-defined functions** → functions you create using \`def\`
+
+Exams mostly ask about **user-defined functions**.
+
+---
+
+# 🔹 **Function Syntax**
+
+\`\`\`python
+def function_name(parameters):
+    # body
+    return value
+\`\`\`
+
+### Example:
+
+\`\`\`python
+def greet():
+    print("Hello!")
+\`\`\`
+
+Call the function:
+
+\`\`\`python
+greet()
+\`\`\`
+
+---
+
+# 🔹 **Parameters vs Arguments**
+
+### Parameters
+
+Variables inside function definition.
+
+### Arguments
+
+Values you pass when calling function.
+
+Example:
+
+\`\`\`python
+def add(a, b):   # a, b = parameters
+    print(a + b)
+
+add(5, 3)        # 5, 3 = arguments
+\`\`\`
+
+---
+
+# 🔹 **return Statement**
+
+\`return\` sends a value back from the function.
+
+Example:
+
+\`\`\`python
+def square(n):
+    return n * n
+
+result = square(4)
+print(result)
+\`\`\`
+
+Output → 16
+
+Marathi:
+\`return\` म्हणजे function ची output परत देतो.
+
+---
+
+# 🔹 **Default Arguments**
+
+Arguments ज्यांना default values दिलेल्या असतात.
+
+Example:
+
+\`\`\`python
+def greet(name="Student"):
+    print("Hello", name)
+
+greet()          # uses default
+greet("Disha")   # overrides default
+\`\`\`
+
+---
+
+# 🔹 **Keyword Arguments**
+
+Argument name वापरून values देणे.
+
+\`\`\`python
+def details(name, age):
+    print(name, age)
+
+details(age=20, name="Riya")
+\`\`\`
+
+Order does not matter.
+
+---
+
+# 🔹 **Variable-length Arguments**
+
+## ⭐ \`*args\` → multiple positional arguments
+
+\`\`\`python
+def total(*numbers):
+    print(sum(numbers))
+
+total(1, 2, 3)
+total(10, 20, 30, 40)
+\`\`\`
+
+## ⭐ \`**kwargs\` → multiple keyword arguments
+
+\`\`\`python
+def info(**data):
+    print(data)
+
+info(name="Raju", age=21, city="Pune")
+\`\`\`
+
+---
+
+# 🔹 **Local & Global Variables**
+
+## Local
+
+Variable declared **inside** function.
+Accessible only inside that function.
+
+\`\`\`python
+def func():
+    x = 10  # local
+
+func()
+# print(x) → error
+\`\`\`
+
+## Global
+
+Declared **outside** function.
+
+\`\`\`python
+x = 10
+
+def func():
+    print(x)
+
+func()
+\`\`\`
+
+---
+
+# 🔹 **global keyword**
+
+To modify global variable inside function.
+
+\`\`\`python
+x = 5
+
+def change():
+    global x
+    x = 20
+
+change()
+print(x)  # 20
+\`\`\`
+
+---
+
+# 🔹 **Lambda Functions (Anonymous Functions)**
+
+One-line functions created using \`lambda\`.
+
+Syntax:
+
+\`\`\`python
+lambda arguments : expression
+\`\`\`
+
+Example:
+
+\`\`\`python
+square = lambda x : x*x
+print(square(5))
+\`\`\`
+
+Output → 25
+
+Used in map(), filter(), reduce().
+
+---
+
+# 🔹 **Recursion**
+
+Function calling itself.
+
+Example:
+
+\`\`\`python
+def fact(n):
+    if n == 1:
+        return 1
+    return n * fact(n-1)
+
+print(fact(5))
+\`\`\`
+
+---
+
+# 🔹 **Range Function (Simple Marathi Explanation)**
+
+Just in case you need it for functions:
+
+\`range(start, stop, step)\`
+
+* start = कुठून सुरू करायचं (default = 0)
+* stop = कुठे थांबायचं (exclusive)
+* step = कितीने वाढवायचं (default = 1)
+
+Examples:
+
+\`\`\`python
+range(5)        # 0 1 2 3 4
+range(1, 6)     # 1 2 3 4 5
+range(1, 10, 2) # 1 3 5 7 9
+\`\`\`
+
+---
+
+  `;
+
+  // Render and highlight
+  const html = marked.parse(markdownContent);
+  document.getElementById('content').innerHTML = html;
+  document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
+</script>
+
+</body>
+</html>
