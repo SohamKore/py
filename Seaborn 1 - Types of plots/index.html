@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Markdown Viewer - Dark + Code Highlighting</title>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/highlight.min.js"></script>
+  <style>
+    body {
+      background-color: #1e1e1e;
+      color: #d4d4d4;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      padding: 20px;
+      line-height: 1.6;
+    }
+
+    #content {
+      max-width: 800px;
+      margin: auto;
+    }
+
+    pre {
+      background-color: #2d2d2d;
+      border-radius: 6px;
+      padding: 15px;
+      overflow-x: auto;
+    }
+
+    code {
+      font-family: Consolas, monospace;
+      font-size: 14px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid #3c3c3c;
+      margin: 30px 0;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      color: #ffffff;
+    }
+
+    a {
+      color: #4ea1ff;
+    }
+
+    strong {
+      color: #ffffff;
+    }
+        .custom-cursor {
+
+position: fixed !important;
+pointer-events: none !important;
+z-index: 9999 !important;
+height: 70px !important; /* Adjust the height as needed */
+}
+  </style>
+</head>
+<body>
+
+<div id="content"></div>
+    <script>
+        window.onload = function() {
+            
+       
+                   var cursor = document.createElement('img');
+                   cursor.src = 'https://i.gifer.com/1V94.gif';
+                   cursor.classList.add('custom-cursor');
+             
+             // Add cursor to the document
+             document.body.appendChild(cursor);
+             
+             // Adjust cursor position based on mouse movement
+             document.addEventListener('mousemove', function(e) {
+               console.log(1)
+               var cursorOffsetX = cursor.width / 2;
+               var cursorOffsetY = cursor.height / 2;
+               cursor.style.left = (e.clientX - cursorOffsetX) + 'px';
+               cursor.style.top = (e.clientY - cursorOffsetY) + 'px';
+             }); }
+       
+           </script>
+<script>
+  const markdownContent = `
+
+---
+
+# 📊 Basic Plots in Seaborn (Clean Notes)
+
+## 1. Line Plot
+
+* **Purpose:** Shows relationship between two continuous variables (often time-series data).
+* **Use Case:** Trends over time
+
+\`\`\`python
+import seaborn as sns
+import matplotlib.pyplot as plt
+
+fmri = sns.load_dataset("fmri")
+sns.lineplot(x="timepoint", y="signal", hue="region", data=fmri)
+plt.show()
+\`\`\`
+
+**Explanation:**
+
+* \`x="timepoint"\` → time axis
+* \`y="signal"\` → measured values
+* \`hue="region"\` → separate lines for each region
+
+---
+
+## 2. Scatter Plot
+
+* **Purpose:** Shows relationship/correlation between two numerical variables
+* **Use Case:** Detect patterns, clusters, or outliers
+
+\`\`\`python
+tips = sns.load_dataset("tips")
+sns.scatterplot(x="total_bill", y="tip", hue="day", data=tips)
+plt.show()
+\`\`\`
+
+**Explanation:**
+
+* Points represent observations
+* \`hue="day"\` → color grouping by category
+
+---
+
+## 3. Bar Plot
+
+* **Purpose:** Compare numerical values across categories
+* **Default Behavior:** Shows mean with confidence interval
+
+\`\`\`python
+sns.barplot(x="day", y="total_bill", data=tips)
+plt.show()
+\`\`\`
+
+**Explanation:**
+
+* Categories on x-axis
+* Aggregated values (mean) on y-axis
+
+---
+
+## 4. Box Plot
+
+* **Purpose:** Displays data distribution using quartiles
+* **Highlights:** Median, spread, and outliers
+
+\`\`\`python
+sns.boxplot(x="day", y="total_bill", data=tips)
+plt.show()
+\`\`\`
+
+**Explanation:**
+
+* Box → IQR (Interquartile Range)
+* Line → Median
+* Points → Outliers
+
+---
+
+## 5. Histogram (Histplot)
+
+* **Purpose:** Shows distribution of a single variable
+
+\`\`\`python
+sns.histplot(tips["total_bill"], kde=True)
+plt.show()
+\`\`\`
+
+**Explanation:**
+
+* Bars → frequency
+* \`kde=True\` → smooth density curve
+
+---
+
+## 6. Heatmap
+
+* **Purpose:** Visualizes matrix data (e.g., correlations)
+
+\`\`\`python
+corr = tips.corr(numeric_only=True)
+sns.heatmap(corr, annot=True, cmap="coolwarm")
+plt.show()
+\`\`\`
+
+**Explanation:**
+
+* \`annot=True\` → show values
+* \`cmap="coolwarm"\` → color gradient
+
+---
+
+## 7. Pair Plot
+
+* **Purpose:** Shows pairwise relationships between multiple variables
+
+\`\`\`python
+iris = sns.load_dataset("iris")
+sns.pairplot(iris, hue="species")
+plt.show()
+\`\`\`
+
+**Explanation:**
+
+* Diagonal → histograms
+* Off-diagonal → scatter plots
+* \`hue="species"\` → category-based coloring
+
+---
+
+# 🧠 Quick Summary Table
+
+| Plot Type   | Best For                       |
+| ----------- | ------------------------------ |
+| Lineplot    | Trends over time               |
+| Scatterplot | Relationship between variables |
+| Barplot     | Comparing categories           |
+| Boxplot     | Distribution & outliers        |
+| Histplot    | Single variable distribution   |
+| Heatmap     | Correlation / matrix data      |
+| Pairplot    | Multi-variable relationships   |
+
+---
+
+  
+  `;
+
+  // Render and highlight
+  const html = marked.parse(markdownContent);
+  document.getElementById('content').innerHTML = html;
+  document.querySelectorAll('pre code').forEach(block => hljs.highlightElement(block));
+</script>
+
+</body>
+</html>
